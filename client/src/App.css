@@ -1,0 +1,46 @@
+.App {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+h2,
+h4 {
+  font-family: 'Courier New', Courier, monospace;
+  color: rgb(30,80,179);
+}
+
+
+#run {
+  text-align: left;
+  margin: 2vh;
+  margin-left: 5%;
+}
+
+#run button {
+  height: 30px;
+  width: 50px;
+  background-color: rgb(144, 144, 255);
+  border-radius: 10px;
+  box-shadow: -7px 8px 8px 2px rgb(0, 0, 0.2, 0.2);
+  border: none;
+  outline: none;
+}
+
+
+pre {
+  text-align: left;
+  border: 2px solid grey;
+  width: 90%;
+  height: 15vh;
+  margin: auto;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+#editor {
+  text-align: center;
+  width: 90%;
+  margin: auto;
+  border: 2px solid rgb(75, 67, 67);
+}
