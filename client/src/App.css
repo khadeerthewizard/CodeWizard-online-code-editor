@@ -4,27 +4,33 @@
   margin-bottom: 0;
 }
 
-h2,
-h4 {
+h2{
   font-family: 'Courier New', Courier, monospace;
-  color: rgb(30,80,179);
+  color: rgb(39, 109, 248);
+  font-weight: bolder;
 }
 
 
-#run {
+#run {    
+  display: flex;
   text-align: left;
-  margin: 2vh;
   margin-left: 5%;
+  margin-top: auto;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+  padding: 10px;
+  flex-direction: row;
 }
 
 #run button {
-  height: 30px;
-  width: 50px;
-  background-color: rgb(144, 144, 255);
+  height: 50px;
+  width: 80px;
   border-radius: 10px;
-  box-shadow: -7px 8px 8px 2px rgb(0, 0, 0.2, 0.2);
-  border: none;
-  outline: none;
+}
+
+#run .textinput {
+  margin: 10px;
 }
 
 
@@ -36,6 +42,7 @@ pre {
   margin: auto;
   overflow-y: auto;
   overflow-x: auto;
+  color: white;
 }
 
 #editor {
@@ -43,4 +50,8 @@ pre {
   width: 90%;
   margin: auto;
   border: 2px solid rgb(75, 67, 67);
+}
+
+#switch{
+  margin-left: 50px;
 }

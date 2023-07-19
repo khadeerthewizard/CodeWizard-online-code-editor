@@ -8,7 +8,7 @@ if (!fs.existsSync(outputPath)) {
   fs.mkdirSync(outputPath, { recursive: true });
 }
 
-const executeJava = (filepath) => {
+const executeJava = (filepath,inPath) => {
   const jobId = path.basename(filepath).split(".")[0];
   const javaCodeDir = path.join(__dirname, 'codes', 'javacodes', jobId);
   const javaCode = path.join(javaCodeDir, 'Solution.java');
@@ -26,7 +26,7 @@ const executeJava = (filepath) => {
   return new Promise((resolve, reject) => {
     try {
       exec(
-        `javac ${javaCode} && java -cp ${javaCodeDir} Solution`,
+        `javac ${javaCode} && java -cp ${javaCodeDir} Solution <${inPath}`,
         (error, stdout, stderr) => {
           try {
             if (error) {

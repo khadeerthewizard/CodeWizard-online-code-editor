@@ -12,9 +12,9 @@ if(!fs.existsSync(outputPath)){
 }
 
 
-const executePy = (filepath) =>{
+const executePy = (filepath,inPath) =>{
     return new Promise((resolve,reject) =>{
-        exec(`python ${filepath}`,
+        exec(`python ${filepath} <${inPath}`,
         (error, stdout,stderr) => {
             if(error){
                 reject({error,stderr});
