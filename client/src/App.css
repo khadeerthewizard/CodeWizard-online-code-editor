@@ -26,6 +26,7 @@ h2{
 #run button {
   height: 50px;
   width: 80px;
+  margin: 10px;
   border-radius: 10px;
 }
 

@@ -38,6 +38,100 @@ function App() {
       console.log(error);
     }
   }
+  const handleSubmit2 = () =>{
+    const payload = {
+      code,
+      language,
+      type:"Correct"
+    };
+    console.log(code);
+    try {
+      axios.post("http://localhost:5000/magic",payload)
+    .then((response) => {
+      console.log(response);
+      setCode(response.data.output);
+      setOutput("MAgiC DonE")
+    })
+    .catch((error) => {
+      console.log("checkpoint");
+      console.log(error.response.data.output);
+      setOutput("Errors.. Check your code");
+    });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  const handleSubmit3 =()=>{
+    const payload = {
+      code,
+      language,
+      type:"Auto"
+    };
+    console.log(code);
+    try {
+      axios.post("http://localhost:5000/magic",payload)
+    .then((response) => {
+      console.log(response);
+      setCode(response.data.output);
+      setOutput("Auto Completed the code")
+    })
+    .catch((error) => {
+      console.log("checkpoint");
+      console.log(error.response.data.output);
+      setOutput("Errors.. Check your code");
+    });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  const handleSubmit4 =()=>{
+    const payload = {
+      code,
+      language,
+      type:"Optimize"
+    };
+    console.log(code);
+    try {
+      axios.post("http://localhost:5000/magic",payload)
+    .then((response) => {
+      console.log(response);
+      setCode(response.data.output);
+      setOutput("Optimized");
+    })
+    .catch((error) => {
+      console.log("checkpoint");
+      console.log(error.response.data.output);
+      setOutput("Errors.. Check your code");
+    });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  const handleSubmit5 =()=>{
+    const payload = {
+      code,
+      language,
+      type:"guide_me"
+    };
+    console.log(code);
+    try {
+      axios.post("http://localhost:5000/magic",payload)
+    .then((response) => {
+      console.log(response);
+      setCode(response.data.output);
+      setOutput("Added comments")
+    })
+    .catch((error) => {
+      console.log("checkpoint");
+      console.log(error.response.data.output);
+      setOutput("Errors.. Check your code");
+    });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
   useEffect(() => {
     if (isTextFieldFocused) {
       textFieldRef.current.focus();
@@ -57,13 +151,18 @@ function App() {
         height="300px"
         language={language}
         theme={theme}
-        fon
+        
         value={code}
         onChange={setCode}
       />
       </div>
       <div id='run'>
         <Button onClick={handleSubmit} variant="contained" color="success">Run</Button>
+
+        <Button onClick={handleSubmit2} variant='contained' color='success'>Magic</Button>
+        <Button onClick={handleSubmit3} variant='contained' color='success'>Auto</Button>
+        <Button onClick={handleSubmit4} variant='contained' color='success'>Optimize</Button>
+        <Button onClick={handleSubmit5} variant='contained' color='success'>GUIDE</Button>
         <div id="switch">
         <FormControlLabel 
           control={<Switch color="success" onChange={(e) => setIsTextFieldFocused(e.target.checked)} />}
@@ -78,7 +177,7 @@ function App() {
           label="Custom Input"
           variant="outlined"
           placeholder='Enter your Custom Input'
-          focused={isTextFieldFocused}
+          autoFocus={isTextFieldFocused}
         />
       </div>
       <pre>{output}</pre>
