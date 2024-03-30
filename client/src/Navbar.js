@@ -17,7 +17,7 @@ const Navbar = ({ language, setLanguage, theme, setTheme }) => {
 
   return (
     <div className="navbar">
-      <h4>Online Code Compiler</h4>
+      <h4>Magic AI Guided Code Compiler</h4>
       <div>
       <Select
         options={languages}
