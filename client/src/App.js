@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
+require('dotenv').config()
 
 function App() {
   const [code, setCode] = useState('');
@@ -16,6 +17,7 @@ function App() {
   const [input, setInput] = useState('');
   const [isTextFieldFocused, setIsTextFieldFocused] = useState(false);
   const textFieldRef = useRef(null);
+  const bapiUrl = process.env.bapiUrl;
   const handleSubmit = () =>{
     const payload = {
       language : language,
@@ -24,7 +26,7 @@ function App() {
     };
     console.log(code);
     try {
-      axios.post("http://localhost:5000/run",payload)
+      axios.post(bapiUrl+"/run",payload)
     .then((response) => {
       console.log(response);
       setOutput(response.data.output);
@@ -46,7 +48,7 @@ function App() {
     };
     console.log(code);
     try {
-      axios.post("http://localhost:5000/magic",payload)
+      axios.post(bapiUrl+"/magic",payload)
     .then((response) => {
       console.log(response);
       setCode(response.data.output);
@@ -69,7 +71,7 @@ function App() {
     };
     console.log(code);
     try {
-      axios.post("http://localhost:5000/magic",payload)
+      axios.post(bapiUrl+"/magic",payload)
     .then((response) => {
       console.log(response);
       setCode(response.data.output);
@@ -92,7 +94,7 @@ function App() {
     };
     console.log(code);
     try {
-      axios.post("http://localhost:5000/magic",payload)
+      axios.post(bapiUrl+"/magic",payload)
     .then((response) => {
       console.log(response);
       setCode(response.data.output);
@@ -115,7 +117,7 @@ function App() {
     };
     console.log(code);
     try {
-      axios.post("http://localhost:5000/magic",payload)
+      axios.post(bapiUrl+"/magic",payload)
     .then((response) => {
       console.log(response);
       setCode(response.data.output);

@@ -11,7 +11,7 @@ const { executeC } = require('./executeC');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const app = express();
 require('dotenv').config();
-
+const bapiUrl = process.env.bapiUrl;
 const inputPath = path.join(__dirname,"inputs");
 
 
@@ -19,9 +19,7 @@ if (!fs.existsSync(inputPath)) {
   fs.mkdirSync(inputPath,{recursive: true});
 }
 
-app.use(cors({
-    origin: 'http://localhost:3000'
-  }))
+app.use(cors())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
