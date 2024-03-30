@@ -11,9 +11,6 @@
 # production
 /build
 
-/codes
-/inputs
-/outputs
 
 # misc
 .env
