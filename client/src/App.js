@@ -7,7 +7,8 @@ import Button from '@mui/material/Button';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
-
+require('dotenv').config()
+const bapiUrl = process.env.bapiUrl;
 function App() {
   const [code, setCode] = useState('');
   const [output, setOutput] = useState('');
@@ -24,7 +25,7 @@ function App() {
     };
     console.log(code);
     try {
-      axios.post("http://localhost:5000/run",payload)
+      axios.post(bapiUrl,payload)
     .then((response) => {
       console.log(response);
       setOutput(response.data.output);

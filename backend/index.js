@@ -2,13 +2,11 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const fs = require('fs');
-
 const { generateFile } = require('./generateFile');
 const { executeCpp } = require('./executeCpp');
 const { executePy } = require('./executepy');
 const { executeJava } = require('./executeJava');
 const { executeC } = require('./executeC');
-
 const app = express();
 
 const inputPath = path.join(__dirname,"inputs");
