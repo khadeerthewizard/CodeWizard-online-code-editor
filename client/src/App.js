@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
-require('dotenv').config()
+const bapiUrl = 'https://codewizard-online-code-editor.onrender.com';
 function App() {
   const [code, setCode] = useState('');
   const [output, setOutput] = useState('');
@@ -16,7 +16,7 @@ function App() {
   const [input, setInput] = useState('');
   const [isTextFieldFocused, setIsTextFieldFocused] = useState(false);
   const textFieldRef = useRef(null);
-  const bapiUrl = process.env.bapiUrl;
+  
   const handleSubmit = () =>{
     const payload = {
       language : language,
