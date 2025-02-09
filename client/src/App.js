@@ -1,4 +1,6 @@
 import axios from 'axios';
+import ReactLoading from "react-loading";
+
 import './App.css';
 import React, { useState, useRef, useEffect } from 'react';
 import Editor from "@monaco-editor/react"
@@ -8,7 +10,9 @@ import TextareaAutosize from '@mui/base/TextareaAutosize';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 const bapiUrl = 'https://codewizard-online-code-editor.onrender.com';
+
 function App() {
+  const [loading, setLoading] = useState(false);
   const [code, setCode] = useState('');
   const [output, setOutput] = useState('');
   const [language, setLanguage] = useState('cpp');
@@ -17,51 +21,53 @@ function App() {
   const [isTextFieldFocused, setIsTextFieldFocused] = useState(false);
   const textFieldRef = useRef(null);
   
-  const handleSubmit = () =>{
+  const handleSubmit = async () => {
+    setLoading(true);
     const payload = {
-      language : language,
+      language: language,
       code,
       input,
     };
-    console.log(code);
+
     try {
-      axios.post(bapiUrl+"/run",payload)
-    .then((response) => {
+      const response = await axios.post(bapiUrl + "/run", payload);
       console.log(response);
       setOutput(response.data.output);
-    })
-    .catch((error) => {
-      console.log("checkpoint");
-      console.log(error.response.data.output);
-      setOutput("Errors.. Check your code");
-    });
     } catch (error) {
-      console.log(error);
+      console.error("Error:", error);
+      if (error.response && error.response.data && error.response.data.output) {
+        setOutput(error.response.data.output);
+      } else {
+        setOutput("Errors.. Check your code and connection"); 
+      }
+    } finally {
+      setLoading(false);
     }
-  }
-  const handleSubmit2 = () =>{
+  };
+  const handleSubmit2 = async () => {
+    setLoading(true); 
     const payload = {
       code,
       language,
       type:"Correct"
     };
-    console.log(code);
+
     try {
-      axios.post(bapiUrl+"/magic",payload)
-    .then((response) => {
+      const response = await axios.post(bapiUrl + "/magic", payload);
       console.log(response);
       setCode(response.data.output);
-      setOutput("MAgiC DonE")
-    })
-    .catch((error) => {
-      console.log("checkpoint");
-      console.log(error.response.data.output);
-      setOutput("Errors.. Check your code");
-    });
+      setOutput("MAgiC DonE");
     } catch (error) {
-      console.log(error);
+      console.error("Error:", error); // Use console.error for errors
+      if (error.response && error.response.data && error.response.data.output) {
+        setOutput(error.response.data.output);
+      } else {
+        setOutput("Errors.. Check your code and connection"); // More informative error message
+      }
+    } finally {
+      setLoading(false); // Set loading to false regardless of success or failure
     }
-  }
+  };
   const handleSubmit3 =()=>{
     const payload = {
       code,
@@ -140,6 +146,11 @@ function App() {
   }, [isTextFieldFocused]);
   return (
     <div className="App">
+    {loading ? <div className="loading-overlay">
+          <ReactLoading type="spin" color="#0000FF" height={100} width={100} />
+        </div>
+    : 
+      <>
       <h2>Code Wizard</h2>
       <Navbar
         language={language} setLanguage={setLanguage}
@@ -182,6 +193,11 @@ function App() {
         />
       </div>
       <pre>{output}</pre>
+    
+    
+    </>
+    
+    }
     </div>
   );
 }
